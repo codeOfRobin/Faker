@@ -33,7 +33,7 @@ public extension Int {
     
         - returns: Returns a random value between `min` and `max`.
     */
-    public static func random(min : Int = 0, max : Int = Int.max) -> Int {
+    public static func random(_ min : Int = 0, max : Int = Int.max) -> Int {
         precondition(min <= max, "attempt to call random() with min > max")
         
         let diff   = UInt(bitPattern: max &- min)
@@ -49,7 +49,7 @@ public extension Int {
     
         - returns: Returns a random number with exactly `digits` digits.
     */
-    public static func number(digits : Int? = nil) -> Int {
+    public static func number(_ digits : Int? = nil) -> Int {
         let nbDigits = digits != nil ? digits! : Int.random(1, max: 9)
         let maximum  = pow(10, Double(nbDigits)) - 1
         let result   = Int.random(Int(pow(10, Double(nbDigits - 1))), max: Int(maximum))
@@ -57,7 +57,7 @@ public extension Int {
         return result
     }
     
-    public func randomize(variation : Int) -> Int {
+    public func randomize(_ variation : Int) -> Int {
         let multiplier = Double(Int.random(100 - variation, max: 100 + variation)) / 100
         let randomized = Double(self) * multiplier
         
@@ -66,12 +66,12 @@ public extension Int {
 }
 
 private extension UInt {
-    static func random(min : UInt, max : UInt) -> UInt {
+    static func random(_ min : UInt, max : UInt) -> UInt {
         precondition(min <= max, "attempt to call random() with min > max")
         
         if min == UInt.min && max == UInt.max {
             var result : UInt = 0
-            arc4random_buf(&result, sizeofValue(result))
+            arc4random_buf(&result, MemoryLayout.size(ofValue: result))
             
             return result
         } else {
@@ -80,7 +80,7 @@ private extension UInt {
             var result : UInt = 0
             
             repeat {
-                arc4random_buf(&result, sizeofValue(result))
+                arc4random_buf(&result, MemoryLayout.size(ofValue: result))
             } while result >= limit
             
             result = result % range

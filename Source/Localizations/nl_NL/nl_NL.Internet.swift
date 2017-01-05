@@ -24,12 +24,12 @@ import Foundation
 
 public extension nl_NL {
     public class Internet {
-        public class Provider : Faker.Internet.Provider {
-            override public func tlds() -> [String] {
+        open class Provider : Faker.Internet.Provider {
+            override open func tlds() -> [String] {
                 return [ "com", "com", "com", "net", "org", "nl", "nl", "nl" ]
             }
             
-            override public func freeEmailDomains() -> [String] {
+            override open func freeEmailDomains() -> [String] {
                 return [ "gmail.com", "hotmail.nl", "live.nl", "yahoo.nl" ]
             }
         }
