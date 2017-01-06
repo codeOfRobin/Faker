@@ -8,6 +8,7 @@ with more Swift specific code (not a direct port).
 ## Requirements
 
  - iOS 8.0+
+ - Swift 3
 
 ## Installation
 
