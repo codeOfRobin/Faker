@@ -59,7 +59,8 @@ public extension Array {
                    array is empty.
     */
     public func random() -> Element? {
-        return (count > 0) ? self.shuffled()[0] : nil
+        let index = Int(arc4random_uniform(UInt32(count)))
+        return (count > 0) ? self[index] : nil
     }
     
     /**
